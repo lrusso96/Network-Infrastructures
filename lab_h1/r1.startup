@@ -1,0 +1,4 @@
+ip link set eth0 up
+ip address add 192.168.4.1/25 dev eth0
+/etc/init.d/networking restart
+/etc/init.d/dhcp3-server start

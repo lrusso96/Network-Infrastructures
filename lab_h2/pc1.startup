@@ -1,1 +1,15 @@
 /etc/init.d/networking restart
+dhclient
+while ! ping -c 1 10.0.0.100
+do
+	sleep 6
+done
+
+echo  "10.0.0.100	s2" >> etc/hosts
+
+#!/bin/sh
+/usr/bin/expect <<EOD
+spawn ssh -f -NL 9000:localhost:8000 ssh_user@s2
+expect "Are you sure you want to continue connecting (yes/no)?" {send "yes\n"}
+expect "ssh_user@s2's password:" {send "user\n"}
+expect eof

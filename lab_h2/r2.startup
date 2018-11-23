@@ -10,3 +10,20 @@ ip address add 1.0.1.20/31 dev eth3
 
 /etc/init.d/networking restart
 /etc/init.d/quagga restart
+/etc/init.d/ssh restart
+mkdir /home/homework_user
+useradd homework_user -d /home/homework_user
+echo -e 'user\nuser\n' | passwd homework_user
+mkdir /home/homework_user/.ssh
+chown homework_user:homework_user /home/homework_user/.ssh
+chmod 700 /home/homework_user/.ssh
+touch /home/homework_user/.ssh/authorized_keys
+chown homework_user:homework_user /home/homework_user/.ssh/authorized_keys
+chmod 600 /home/homework_user/.ssh/authorized_keys
+if [ -e /hostlab/id_rsa.pub ]
+then
+	cat /hostlab/id_rsa.pub > 
+/home/homework_user/.ssh/authorized_keys
+else
+	sleep 1
+fi

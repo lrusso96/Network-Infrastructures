@@ -20,10 +20,8 @@ chmod 700 /home/homework_user/.ssh
 touch /home/homework_user/.ssh/authorized_keys
 chown homework_user:homework_user /home/homework_user/.ssh/authorized_keys
 chmod 600 /home/homework_user/.ssh/authorized_keys
-if [ -e /hostlab/id_rsa.pub ]
-then
-	cat /hostlab/id_rsa.pub > 
-/home/homework_user/.ssh/authorized_keys
-else
+while [ ! -e /hostlab/id_rsa.pub ]
+do
 	sleep 1
-fi
+done
+cat /hostlab/id_rsa.pub > /home/homework_user/.ssh/authorized_keys

@@ -13,13 +13,12 @@ chmod 700 /home/homework_user/.ssh
 touch /home/homework_user/.ssh/authorized_keys
 chown homework_user:homework_user /home/homework_user/.ssh/authorized_keys
 chmod 600 /home/homework_user/.ssh/authorized_keys
-if [ -e /hostlab/id_rsa.pub ]
-then
-	cat /hostlab/id_rsa.pub > 
-/home/homework_user/.ssh/authorized_keys
-else
+while [ ! -e /hostlab/id_rsa.pub ]
+do
 	sleep 1
-fi
+done
+cat /hostlab/id_rsa.pub > /home/homework_user/.ssh/authorized_keys
 
-iptables -P FORWARD DROP
+#iptables -P FORWARD DROP
 iptables -A FORWARD -p tcp --dport 22 -s 10.0.0.0/24 -j ACCEPT
+iptables -A FORWARD -p icmp  -j ACCEPT

@@ -20,3 +20,6 @@ then
 else
 	sleep 1
 fi
+
+iptables -P FORWARD DROP
+iptables -A FORWARD -p tcp --dport 22 -s 10.0.0.0/24 -j ACCEPT

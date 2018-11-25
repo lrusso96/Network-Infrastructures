@@ -3,6 +3,10 @@ ip address add 1.0.1.19/31 dev eth0
 /etc/init.d/networking restart
 /etc/init.d/quagga restart
 
+iptables -A FORWARD -p tcp --dport 22 -d 10.0.0.100 -j ACCEPT
+iptables -A FORWARD -p tcp --sport 22 -d 10.0.0.100 -j ACCEPT
+iptables -A FORWARD -p tcp -d 10.0.0.100 -j DROP
+
 /etc/init.d/ssh restart
 mkdir /home/homework_user
 useradd homework_user -d /home/homework_user
@@ -19,6 +23,4 @@ do
 done
 cat /hostlab/id_rsa.pub > /home/homework_user/.ssh/authorized_keys
 
-iptables -A FORWARD -p tcp --dport 22 -d 10.0.0.0 -j ACCEPT
-iptables -A FORWARD -p tcp --sport 22 -d 10.0.0.0 -j ACCEPT
-iptables -A FORWARD -p tcp -d 10.0.0.0/24 -j DROP
+

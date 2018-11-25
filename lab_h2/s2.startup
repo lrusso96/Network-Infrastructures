@@ -8,6 +8,22 @@ mkdir /home/ssh_user
 useradd ssh_user -d /home/ssh_user
 echo -e 'user\nuser\n' | passwd ssh_user
 
+mkdir /home/ssh_user
+useradd ssh_user -d /home/ssh_user
+echo -e 'user\nuser\n' | passwd ssh_user
+mkdir /home/ssh_user/.ssh
+chown ssh_user:ssh_user /home/ssh_user/.ssh
+chmod 700 /home/ssh_user/.ssh
+touch /home/ssh_user/.ssh/authorized_keys
+chown ssh_user:ssh_user /home/ssh_user/.ssh/authorized_keys
+chmod 600 /home/ssh_user/.ssh/authorized_keys
+while [ ! -e /hostlab/id_rsa2.pub ]
+do
+	sleep 2
+	echo "waiting for pc1 key"
+done
+cat /hostlab/id_rsa2.pub > /home/ssh_user/.ssh/authorized_keys
+
 while ! ping -c 1 1.0.1.18 &>/dev/null
 do
 	echo "not yet"

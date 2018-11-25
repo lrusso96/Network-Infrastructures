@@ -23,7 +23,7 @@ cat /hostlab/id_rsa2.pub > /home/ssh_user/.ssh/authorized_keys
 
 while ! ping -c 1 1.0.1.18 &>/dev/null
 do
-	echo "not yet"
+	echo "r4 not yet reachable"
 	sleep 2
 done
 

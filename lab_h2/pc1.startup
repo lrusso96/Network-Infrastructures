@@ -4,7 +4,6 @@ echo -e '\n\n\n' | ssh-keygen
 echo  "10.0.0.100	s2" >> etc/hosts
 echo  "10.0.1.1	r9" >> etc/hosts
 
-pwd
 cp /root/.ssh/id_rsa.pub /hostlab/id_rsa2.pub
 while ! ping -c 1 r9 &>/dev/null
 do
@@ -16,8 +15,8 @@ dhclient
 while ! ping -c 1 s2 &>/dev/null
 do
 	echo "s2 not yet reachable"
-	sleep 2
+	sleep 5
 done
-echo "setting up the local forward"
 
+echo "setting up the local forward"
 ssh -o StrictHostKeyChecking=no  -fNL 9000:127.0.0.1:8000 ssh_user@s2

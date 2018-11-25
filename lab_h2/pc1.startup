@@ -1,10 +1,17 @@
 /etc/init.d/networking restart
 echo -e '\n\n\n' | ssh-keygen
-pwd
-cp /root/.ssh/id_rsa2.pub /hostlab
-dhclient
 
 echo  "10.0.0.100	s2" >> etc/hosts
+echo  "10.0.1.1	r9" >> etc/hosts
+
+pwd
+cp /root/.ssh/id_rsa.pub /hostlab/id_rsa2.pub
+while ! ping -c 1 r9 &>/dev/null
+do
+	echo "r9 not yet reachable"
+	sleep 2
+done
+dhclient
 
 while ! ping -c 1 s2 &>/dev/null
 do

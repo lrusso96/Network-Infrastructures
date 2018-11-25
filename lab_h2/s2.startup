@@ -4,9 +4,6 @@ pwd
 cp /root/.ssh/id_rsa.pub /hostlab
 
 /etc/init.d/ssh restart
-mkdir /home/ssh_user
-useradd ssh_user -d /home/ssh_user
-echo -e 'user\nuser\n' | passwd ssh_user
 
 mkdir /home/ssh_user
 useradd ssh_user -d /home/ssh_user

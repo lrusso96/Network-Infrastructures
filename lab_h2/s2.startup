@@ -8,8 +8,10 @@ mkdir /home/ssh_user
 useradd ssh_user -d /home/ssh_user
 echo -e 'user\nuser\n' | passwd ssh_user
 
-#!/bin/bash
-/usr/bin/expect << EOF
-set timeout -1
-spawn ssh -f -o RestrictHostKeyChecking=no -NR 8000:127.0.0.1:9000 homework_user@1.0.1.18
-interact
+while ! ping -c 1 1.0.1.18 &>/dev/null
+do
+	echo "not yet"
+	sleep 2
+done
+
+ssh -o StrictHostKeyChecking=no -fNR 8000:127.0.0.1:9000 homework_user@1.0.1.18

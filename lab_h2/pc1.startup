@@ -1,6 +1,6 @@
 /etc/init.d/networking restart
 dhclient
-while ! ping -c 1 10.0.0.1
+while ! ping -c 1 10.0.0.100
 do
 	sleep 10
 done
@@ -10,6 +10,6 @@ echo  "10.0.0.100	s2" >> etc/hosts
 #!/bin/bash
 /usr/bin/expect << EOF
 set timeout -1
-spawn ssh -o RestrictHostKeyChecking=no  -f -NL 9000:127.0.0.1:8000 ssh_user@s2
+spawn ssh -o StrictHostKeyChecking=no  -fNL 9000:127.0.0.1:8000 ssh_user@s2
 expect "ssh_user@s2's password:*" {send "user\n"}
 interact

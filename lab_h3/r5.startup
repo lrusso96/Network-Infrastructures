@@ -9,4 +9,5 @@ ip address add 1.0.1.15/31 dev eth2
 ip address add 1.0.1.17/31 dev eth3
 ip route add 0.0.0.0/0 via 1.0.1.10
 
-etc/init.d/networking restart
+/etc/init.d/networking restart
+/etc/init.d/quagga restart

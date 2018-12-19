@@ -1,1 +1,8 @@
 /etc/init.d/networking restart
+
+if [ ! -e /hostlab/id_rsa.pub ]
+then
+	echo -e '\n\n\n' | ssh-keygen
+	pwd
+	cp /root/.ssh/id_rsa.pub /hostlab
+fi

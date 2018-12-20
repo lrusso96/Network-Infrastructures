@@ -1,0 +1,12 @@
+$TTL 2d
+exam.edu. IN SOA dns.exam.edu. hostmaster.exam.edu. (
+        20171212;
+        28;
+        14;
+        3600000;
+        0;
+)
+
+exam.edu.	IN	NS	dns.exam.edu.
+
+dns.exam.edu.	IN	A	20.0.1.5

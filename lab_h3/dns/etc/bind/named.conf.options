@@ -2,8 +2,8 @@ options {
 	directory "/var/cach/bind";
 
 	auth-nxdomain no;
-	listen-on-v6 {any;};
+	listen-on-v6 { any; };
 	recursion yes;
-	allow-recursion {any;};
+	allow-recursion { any; };
 
 };

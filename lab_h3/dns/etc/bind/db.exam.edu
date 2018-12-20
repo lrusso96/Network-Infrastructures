@@ -1,5 +1,6 @@
+$ORIGIN exam.edu.
 $TTL 2d
-exam.edu. IN SOA dns.exam.edu. hostmaster.exam.edu. (
+$ORIGIN IN SOA ns.exam.edu. hostmaster.exam.edu. (
         20171212;
         28;
         14;
@@ -7,6 +8,18 @@ exam.edu. IN SOA dns.exam.edu. hostmaster.exam.edu. (
         0;
 )
 
-exam.edu.	IN	NS	dns.exam.edu.
+@	IN	NS	ns
+ns	IN	A	20.0.1.5
+r1	IN	A	1.0.1.8
+r2	IN	A	1.0.1.9
+r3	IN	A	1.0.1.5
+r4	IN	A	1.0.1.7
+r5	IN	A	1.0.1.10
 
-dns.exam.edu.	IN	A	20.0.1.5
+$ORIGIN rome.exam.edu.
+@	IN	NS	ns.rome.exam.edu
+ns	IN	A	192.168.1.5
+
+$ORIGIN paris.exam.edu.
+@	IN	NS	ns.paris.exam.edu
+ns	IN	A	192.168.2.5

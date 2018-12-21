@@ -6,3 +6,4 @@ then
 	pwd
 	cp /root/.ssh/id_rsa.pub /hostlab
 fi
+/etc/init.d/bind start
